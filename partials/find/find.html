@@ -1,0 +1,175 @@
+   <tabset>
+    <tab heading="Search by Artist & Song">
+	<br/>
+	 <div class=".col-xs-12 .col-sm-6 .col-md-8">
+		<form class="form-inline" role="form">
+			<div class="form-group">
+			<label for="artist">Artist:</label>
+			<input id="artist" ng-model="data.artist" type="text" placeholder="Ex. Elton John">
+			</div>
+			<div class="form-group">
+			<label for="song">Song:</label>
+			<input id="song" ng-model="data.song" type="text" placeholder="Ex. Sacrifice">
+			</div>
+			 <button id="buscar" class="btn btn-primary" type="button"  data-ng-click
+			 ="findLyricsArtistSong()">Search</button>
+		</form>
+	</div>
+	  <div id="floatingBarsG" class="loading" ng-show="loading">
+		<div class="blockG" id="rotateG_01">
+		</div>
+		<div class="blockG" id="rotateG_02">
+		</div>
+		<div class="blockG" id="rotateG_03">
+		</div>
+		<div class="blockG" id="rotateG_04">
+		</div>
+		<div class="blockG" id="rotateG_05">
+		</div>
+		<div class="blockG" id="rotateG_06">
+		</div>
+		<div class="blockG" id="rotateG_07">
+		</div>
+		<div class="blockG" id="rotateG_08">
+		</div>
+	</div>
+	<div class="row">
+		<div class=".col-xs-12 .col-sm-6 .col-md-8" ng-repeat="lyricartsong in lyricsartistsong.data" >
+			<div class="results">
+				<h2><a href={{lyricartsong.url}} target="_blank">{{lyricartsong.title}}</a></h2>
+				<h3><a href={{lyricartsong.artist.url}} target="_blank">{{lyricartsong.artist.name}}</a></h3>
+				<p>{{lyricartsong.snippet}}</p>
+			</div>
+		</div>
+		<div class=".col-xs-12 .col-sm-6 .col-md-8" ng-hide="!showPagArtistSong">
+			<pagination boundary-links="true" ng-change="findLyricsArtistSongChanged()" total-items="data.totalArtSongItems" ng-model="data.currentArtSongPage" max-size="maxSize" class="pagination-sm" rotate="false" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+		 </div>
+	</div> 
+   </tab>
+    <tab heading="Search by Artist">
+	<br/>
+	 <div class=".col-xs-12 .col-sm-6 .col-md-8">
+		<form class="form-inline" role="form">
+			<div class="form-group">
+			<label for="artist">Artist:</label>
+			<input id="artist" ng-model="data.artistname" type="text" placeholder="Ex. Elton John">
+			</div>
+			 <button id="buscar2" class="btn btn-primary" type="button"  data-ng-click
+			 ="findLyricsArtist()">Search</button>
+		</form>
+	</div>
+	
+   <div id="floatingBarsG" class="loading" ng-show="loading">
+		<div class="blockG" id="rotateG_01">
+		</div>
+		<div class="blockG" id="rotateG_02">
+		</div>
+		<div class="blockG" id="rotateG_03">
+		</div>
+		<div class="blockG" id="rotateG_04">
+		</div>
+		<div class="blockG" id="rotateG_05">
+		</div>
+		<div class="blockG" id="rotateG_06">
+		</div>
+		<div class="blockG" id="rotateG_07">
+		</div>
+		<div class="blockG" id="rotateG_08">
+		</div>
+	</div>
+	<div class="row" >
+		<div class=".col-xs-12 .col-sm-6 .col-md-8" ng-repeat="lyric in lyrics.data" >
+			<h2><a href={{lyric.url}} target="_blank">{{lyric.title}}</a></h2>
+			<h3><a href={{lyric.artist.url}} target="_blank">{{lyric.artist.name}}</a></h3>
+			<div class=".col-md-2">{{lyric.snippet}}</div>
+		</div>
+		<div ng-hide="!showPagArtist">
+		 <pagination boundary-links="true" ng-change="findLyricsArtistChanged()" total-items="data.totalItems" ng-model="data.currentPage" max-size="maxSize" class="pagination-sm" rotate="false" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+		 </div>
+	</div>
+   </tab>
+    <tab heading="Search by Song">
+	<br/>
+	 <div class=".col-xs-12 .col-sm-6 .col-md-8">
+		<form class="form-inline" role="form">
+			<div class="form-group">
+			<label for="song">Song:</label>
+			<input id="song" ng-model="data.track" type="text" placeholder="Ex. Sacrifice">
+			</div>
+			 <button id="buscar3" class="btn btn-primary" type="button"  data-ng-click
+			 ="findLyricsSong()">Search</button>
+		</form>
+	</div>
+	<div id="floatingBarsG" class="loading" ng-show="loading">
+		<div class="blockG" id="rotateG_01">
+		</div>
+		<div class="blockG" id="rotateG_02">
+		</div>
+		<div class="blockG" id="rotateG_03">
+		</div>
+		<div class="blockG" id="rotateG_04">
+		</div>
+		<div class="blockG" id="rotateG_05">
+		</div>
+		<div class="blockG" id="rotateG_06">
+		</div>
+		<div class="blockG" id="rotateG_07">
+		</div>
+		<div class="blockG" id="rotateG_08">
+		</div>
+	</div>
+	<div class="row">
+		<div class=".col-xs-12 .col-sm-6 .col-md-8" ng-repeat="lyricsong in lyricsong.data" >
+			<h2><a href={{lyricsong.url}} target="_blank">{{lyricsong.title}}</a></h2>
+			<h3><a href={{lyricsong.artist.url}} target="_blank">{{lyricsong.artist.name}}</a></h3>
+			<div class=".col-md-2">{{lyricsong.snippet}}</div>
+		</div>
+		<div ng-hide="!showPagSong">
+		 <pagination boundary-links="true" ng-change="findLyricsSongChanged()" total-items="data.totalSongItems" ng-model="data.currentSongPage" max-size="maxSize" class="pagination-sm" rotate="false" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+		 </div>
+	</div>
+   </tab>
+   <tab heading="Search by lyrics">
+	<br/>
+	 <div class=".col-xs-12 .col-sm-6 .col-md-8">
+		<form class="form" role="form">
+			<div class="form-group">
+			<label for="texto">Partial lyrics:</label>
+			<textarea id="texto" ng-model="data.lyricstext" class="form-control" rows="3"></textarea>
+			</div>
+			 <button id="buscar4" class="btn btn-primary" type="button" data-ng-click
+			 ="findLyricsText()">Search</button>
+		</form>
+	</div>
+	<div id="floatingBarsG" class="loading" ng-show="loading">
+		<div class="blockG" id="rotateG_01">
+		</div>
+		<div class="blockG" id="rotateG_02">
+		</div>
+		<div class="blockG" id="rotateG_03">
+		</div>
+		<div class="blockG" id="rotateG_04">
+		</div>
+		<div class="blockG" id="rotateG_05">
+		</div>
+		<div class="blockG" id="rotateG_06">
+		</div>
+		<div class="blockG" id="rotateG_07">
+		</div>
+		<div class="blockG" id="rotateG_08">
+		</div>
+	</div>
+	<div class="row">
+		<div class=".col-xs-12 .col-sm-6 .col-md-8" ng-repeat="result in lyrics_text.data" >
+				<h3> <a href={{result.url}} target="_blank">{{result.title}}</a></h3>
+				<h4><a href={{result.artist.url}} target="_blank">{{result.artist.name}}</a></h4>
+				<div class=".col-md-2">{{result.snippet}}</div>
+		</div>
+		<div ng-hide="!showPagLyric">
+		 <pagination boundary-links="true" ng-change="findLyricsLyricChanged()" total-items="data.totalLyricItems" ng-model="data.currentLyricPage" max-size="maxSize" class="pagination-sm" rotate="false" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+		 </div>
+	</div>
+   </tab>
+   </tabset>
+
+
